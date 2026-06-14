@@ -40,14 +40,23 @@ app.post("/generate-alt-text", async (req, res) => {
       {
         model: "llava:latest",
         prompt: `
-        You are an accessibility expert writing ALT TEXT for websites.
+        You are an accessibility system generating HTML alt text.
 
-        Rules:
-        - Describe only what is clearly visible
-        - Be precise and natural
-        - Max 15-20 words
-        - No unusual words like "urn", "artifact", "object"
-        - If uncertain, say "person", "people", "outdoor scene", "indoor scene"
+        CRITICAL RULES:
+        - Output ONLY the alt text string
+        - No explanations
+        - No storytelling
+        - No extra context
+        - No adjectives unless necessary for identification
+        - Max 15–20 words
+        - Focus only on: who + what + where (if needed)
+        - If uncertain, be general (person, woman, outdoor scene, etc.)
+
+        BAD EXAMPLE:
+        "A young woman stands in front of a stadium looking to her left..."
+
+        GOOD EXAMPLE:
+        "Young woman standing outdoors in front of a stadium"
 
         Return only the alt text.
         `,
