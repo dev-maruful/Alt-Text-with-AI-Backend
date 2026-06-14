@@ -1,8 +1,11 @@
 const express = require("express");
 const axios = require("axios");
+const cors = require("cors");
 
 const app = express();
 app.use(express.json({ limit: "10mb" }));
+
+app.use(cors());
 
 // Health check
 app.get("/", (req, res) => {
